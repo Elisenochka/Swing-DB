@@ -11,6 +11,13 @@ public class DataBase {
     public static Statement stnt;
     public static ResultSet rsSt;
 
+    /*public static void getRowAmount(){
+        stnt=cnn.createStatement();
+
+        while(rsSt.next())
+        return RowId
+    }*/
+
 
     public final static void Cntn() throws ClassNotFoundException, SQLException{
         cnn = null;
@@ -22,9 +29,16 @@ public class DataBase {
 
     public static void CrtDB(String name) throws ClassNotFoundException, SQLException{
         stnt = cnn.createStatement();
-        stnt.execute("CREATE TABLE if not exsists '%s' ('ID','Name')");
+        stnt.execute("CREATE TABLE if not exsists "+name+ "('ID','Name')");
 
         System.out.println("DataBase is created");
+    }
+
+    public static void WriteDB(String name, String values[]) throws SQLException{
+        stnt.execute("INSERT INTO "+ name+"('Login','First name','Name','Last name', 'Number') VALUES ("+values.toString());
+
+        System.out.println("Table is filled");
+
     }
 
 
