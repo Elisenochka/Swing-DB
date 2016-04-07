@@ -19,8 +19,9 @@ static String shName="Swing";
     static Integer[] numbers = new Integer[5];
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        //DataBase.CrtDB(shName);
+
         DataBase.Cntn();
+        DataBase.CrtDB(tableName);
         logins[0]="fis";
         firstNames[0]="From";
         names[0]="Ire";
@@ -28,11 +29,7 @@ static String shName="Swing";
         numbers[0]=890823;
         //System.out.println(Arrays.toString(values));
         DataBase.WriteDB(tableName,logins,firstNames,names,lastNames,numbers);
-
-
         MyWindow mw = new MyWindow();
-
-
 }
 
 
