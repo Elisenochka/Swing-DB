@@ -24,14 +24,14 @@ public class DataBase {
         cnn = null;
         Class.forName("org.sqlite.JDBC");
         cnn = DriverManager.getConnection("jdbc:sqlite:Swing.db");
-        //stnt = cnn.createStatement();
+        stnt = cnn.createStatement();
 
         System.out.println("Base is connected");
     }
 
     public static void CrtDB(String name) throws ClassNotFoundException, SQLException{
-        stnt = cnn.createStatement();
-        stnt.execute("CREATE TABLE if not exsists "+name+ " ('ID' INTEGER PRIMARY KEY AUTOINCREMENT,'Login' TEXT,'First name' TEXT,'Name' TEXT,'Last name' TEXT, 'Number' INT)");
+        //stnt = cnn.createStatement();
+        stnt.execute("CREATE TABLE if not exists '"+ name+ "' ('ID' INTEGER PRIMARY KEY AUTOINCREMENT,'Login' TEXT,'First_name' TEXT,'Name' TEXT,'Last_name' TEXT, 'Number' INT)");
 
         System.out.println("DataBase is created");
     }
@@ -41,7 +41,7 @@ public class DataBase {
         //for (int i=0;i<logins.length;i++) {
         int i=0;
             try {
-                PreparedStatement pStnt=cnn.prepareStatement("INSERT INTO DataBase ('Login','First name','Name','Last name', 'Number') VALUES (?,?,?,?,?)");
+                PreparedStatement pStnt=cnn.prepareStatement("INSERT INTO 'DataBase' ('Login','First_name','Name','Last_name', 'Number') VALUES (?,?,?,?,?)");
             //pStnt.setString(1,name);
                 pStnt.setString(1,logins[i]);
                 pStnt.setString(2,firstNames[i]);
@@ -60,7 +60,7 @@ public class DataBase {
     }
 
     public static void WriteDB(String name) throws SQLException{
-        stnt.execute("INSERT INTO "+ name+"('Login','First name','Name','Last name', 'Number') VALUES ('fis','Fire','Indis','Same','23874904')");
+        stnt.execute("INSERT INTO "+ name+"('Login','First_name','Name','Last_name', 'Number') VALUES ('fis','Fire','Indis','Same','23874904')");
 
         System.out.println("Table is filled");
 
