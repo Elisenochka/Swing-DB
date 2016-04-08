@@ -37,11 +37,10 @@ public class DataBase {
     }
 
     public static void WriteDB(String name, String logins[],String firstNames[],String names[],String lastNames[], Integer numbers[]) throws SQLException{
-
         //for (int i=0;i<logins.length;i++) {
         int i=0;
             try {
-                PreparedStatement pStnt=cnn.prepareStatement("INSERT INTO 'DataBase' ('Login','First_name','Name','Last_name', 'Number') VALUES (?,?,?,?,?)");
+                PreparedStatement pStnt=cnn.prepareStatement("INSERT INTO "+name+" ('Login','First_name','Name','Last_name', 'Number') VALUES (?,?,?,?,?)");
             //pStnt.setString(1,name);
                 pStnt.setString(1,logins[i]);
                 pStnt.setString(2,firstNames[i]);
@@ -54,18 +53,43 @@ public class DataBase {
             e.printStackTrace();
             }
         //}
-
         System.out.println("Table is filled");
-
     }
 
     public static void WriteDB(String name) throws SQLException{
+
+
         stnt.execute("INSERT INTO "+ name+"('Login','First_name','Name','Last_name', 'Number') VALUES ('fis','Fire','Indis','Same','23874904')");
 
         System.out.println("Table is filled");
 
     }
 
+    public static void readBD(String name) throws ClassNotFoundException, SQLException{
+        rsSt = stnt.executeQuery("Select * from "+name);
+
+        while(rsSt.next()){
+            String frtName = rsSt.getString("First_name");
+            String nm = rsSt.getString("Name");
+            String lstName = rsSt.getString("Last_name");
+            int nmr = rsSt.getInt("Number");
+        }
+
+    }
+
+    public static void readBD() throws ClassNotFoundException, SQLException{
+        rsSt = stnt.executeQuery("Select * from DataBase");
+
+        while(rsSt.next()){
+            String frtName = rsSt.getString("First_name");
+            String nm = rsSt.getString("Name");
+            String lstName = rsSt.getString("Last_name");
+            int nmr = rsSt.getInt("Number");
+            String line = "First name: "+frtName+"/n"+"Name: "+nm+"/n"+"Last name: "+lstName+"/n"+"Number: "+nmr;
+            MyWindow.ta.append(line);
+        }
+        //return null;
+    }
 
 
 }
