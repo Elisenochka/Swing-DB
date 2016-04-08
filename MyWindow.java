@@ -12,7 +12,7 @@ import java.sql.*;
  * Created by Romych on 01.04.2016.
  */
 public class MyWindow extends JFrame {
-
+public static JTextArea ta = new JTextArea();
     public MyWindow(){
         setTitle("My first window");
         setSize(400,400);
@@ -20,13 +20,12 @@ public class MyWindow extends JFrame {
         //setLayout(new BorderLayout(0,20));
         //setBackground(Color.BLACK);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-
+        final JTextArea jta = new JTextArea();
         JButton jb1 = new JButton("Send");
         //add(jb1, BorderLayout.NORTH);
         //JButton jb2 = new JButton("JButtton #2");
         //add(jb2, BorderLayout.SOUTH);
-        final JTextArea jta = new JTextArea();
+
         jta.setFont(new Font("Times New Roman", Font.ITALIC,14));
         //add(jta, BorderLayout.CENTER);
         jta.setBackground(Color.lightGray);
@@ -46,11 +45,15 @@ public class MyWindow extends JFrame {
         jb1.setMnemonic(KeyEvent.KEY_PRESSED);
         //JRootPane rp = SwingUtilities.getRootPane(jb1);
         //rp.setDefaultButton(jb1);
+
         jb1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 jta.append(jtf.getText() + '\n');
+                //;
+                jta.append(ta.getText());
                 jtf.setText("");
+
             }
         });
 
